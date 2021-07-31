@@ -1,4 +1,4 @@
-import Artist from 0x03
+import Artist from 0x01
 
 transaction {
 
@@ -14,7 +14,7 @@ transaction {
         self.collectionRef = account            
             .borrow<&Artist.Collection>(from: /storage/ArtistPictureCollection)
             ?? panic("Couldn't borrow collection reference")
-        self.printerRef = getAccount(0x03)
+        self.printerRef = getAccount(0x01)
             .getCapability<&Artist.Printer>(/public/ArtistPicturePrinter)
             .borrow()
             ?? panic("Couldn't borrow printer reference")
