@@ -6,15 +6,22 @@ transaction {
     let collectionRef: &Artist.Collection
 
     prepare(account: AuthAccount) {
+
         account.save(
             <- Artist.createCollection(),
             to: /storage/ArtistPictureCollection
         )
+
+        account.link<&Artist.Collection>(
+            /public/ArtistPictureCollection,
+            target: /storage/ArtistPictureCollection
+        )        
         
-        self.collectionRef = account            
+        self.collectionRef = account
             .borrow<&Artist.Collection>(from: /storage/ArtistPictureCollection)
             ?? panic("Couldn't borrow collection reference")
-        self.printerRef = getAccount(0x01)
+            
+        self.printerRef = getAccount(0x04)
             .getCapability<&Artist.Printer>(/public/ArtistPicturePrinter)
             .borrow()
             ?? panic("Couldn't borrow printer reference")
