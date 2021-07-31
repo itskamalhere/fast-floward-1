@@ -12,7 +12,7 @@ transaction {
         )
         
         self.collectionRef = account            
-            .borrow<&Artist.Collection>(from: /storage/ArtistPictureCollection1)
+            .borrow<&Artist.Collection>(from: /storage/ArtistPictureCollection)
             ?? panic("Couldn't borrow collection reference")
         self.printerRef = getAccount(0x03)
             .getCapability<&Artist.Printer>(/public/ArtistPicturePrinter)
