@@ -72,6 +72,18 @@ pub contract Artist {
     pub fun deposit(picture: @Picture) {
       self.pictures.append(<-picture)
     }
+
+    pub fun getCanvases(): [Canvas] {
+      var canvases: [Canvas] = []
+      var index = 0
+
+      while index < self.pictures.length {
+        canvases.append(self.pictures[index].canvas)
+        index = index + 1
+      }
+      return canvases
+    }
+
   }
 
   pub fun createCollection(): @Collection {
