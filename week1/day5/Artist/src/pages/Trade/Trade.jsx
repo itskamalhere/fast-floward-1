@@ -71,9 +71,8 @@ function Trade(props) {
   };
   const onWithdraw = async (listingIndex) => {
     console.log(listingIndex);
-    dispatch({type: 'startProcessing', payload: listingIndex});
-    // TODO: Once your withdrawListing() method is implemented in Flow.jsx, uncomment this line.
-    // await flow.withdrawListing(listingIndex);
+    dispatch({type: 'startProcessing', payload: listingIndex});    
+    await flow.withdrawListing(listingIndex);
     await flow.fetchCollection();
     await flow.fetchBalance();
     const listings = await flow.fetchListings();
